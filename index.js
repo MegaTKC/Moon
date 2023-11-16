@@ -28,5 +28,6 @@ server.on('request', (request, response) => {
 
     // For other requests, serve the index.html file
     const indexPath = path.join(__dirname, '/index.html');
+    response.writeHead(200, { 'Content-Type': 'text/html' }); // Set Content-Type to 'text/html'
     response.end(fs.readFileSync(indexPath, 'utf-8'));
 }).on('upgrade', (clientRequest, clientSocket, clientHead) => proxy.upgrade(clientRequest, clientSocket, clientHead)).listen(3000);
