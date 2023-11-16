@@ -1,24 +1,32 @@
-// https here is necesary for some features to work, even if this is going to be behind an SSL-providing reverse proxy.
-const https = require('https');
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
 
-// you are free to use self-signed certificates here, if you plan to route through an SSL-providing reverse proxy.
-const ssl = {
-    key: fs.readFileSync(path.join(__dirname, '/ssl.key')),
-    cert: fs.readFileSync(path.join(__dirname, '/ssl.cert')),
-};
 const server = http.createServer();
 const proxy = new Corrosion({
-    codec: 'xor', // apply basic xor encryption to url parameters in an effort to evade filters. Optional.
-    prefix: '/get/' // specify the endpoint (prefix). Optional.
+    codec: 'xor',
+    prefix: '/get/'
 });
 
 proxy.bundleScripts();
 
 server.on('request', (request, response) => {
-    if (request.url.startsWith(proxy.prefix)) return proxy.request(request, response);
-    response.end(fs.readFileSync(__dirname + '/front.html', 'utf-8'));
-}).on('upgrade', (clientRequest, clientSocket, clientHead) => proxy.upgrade(clientRequest, clientSocket, clientHead)).listen(3000); // port other than 443 if it is needed by other software.
+    const url = request.url;
+
+    // Check if the request URL starts with the specified prefix
+    if (url.startsWith(proxy.prefix)) {
+        return proxy.request(request, response);
+    }
+
+    // Check if the request is for style.css
+    if (url === '/style.css') {
+        const cssPath = path.join(__dirname, '/style.css');
+        response.writeHead(200, { 'Content-Type': 'text/css' });
+        return fs.createReadStream(cssPath).pipe(response);
+    }
+
+    // For other requests, serve the index.html file
+    const indexPath = path.join(__dirname, '/index.html');
+    response.end(fs.readFileSync(indexPath, 'utf-8'));
+}).on('upgrade', (clientRequest, clientSocket, clientHead) => proxy.upgrade(clientRequest, clientSocket, clientHead)).listen(3000);
