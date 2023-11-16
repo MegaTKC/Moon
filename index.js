@@ -1,5 +1,6 @@
 // https here is necesary for some features to work, even if this is going to be behind an SSL-providing reverse proxy.
 const https = require('https');
+const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
@@ -9,7 +10,7 @@ const ssl = {
     key: fs.readFileSync(path.join(__dirname, '/ssl.key')),
     cert: fs.readFileSync(path.join(__dirname, '/ssl.cert')),
 };
-const server = https.createServer(ssl);
+const server = http.createServer();
 const proxy = new Corrosion({
     codec: 'xor', // apply basic xor encryption to url parameters in an effort to evade filters. Optional.
     prefix: '/get/' // specify the endpoint (prefix). Optional.
