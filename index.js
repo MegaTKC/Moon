@@ -5,7 +5,7 @@ const Corrosion = require('corrosion');
 
 const app = express();
 const proxy = new Corrosion({
-    codec: 'xor',
+    codec: 'plain',
     prefix: '/get/'
 });
 

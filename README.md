@@ -8,5 +8,5 @@ Currently the proxy only has Corrosion, which was a proxy developed by TitaniumN
 I don't recommend deploying it on platforms that don't allow proxies to be hosted on their service. 'Moon.' falls under this proxy category because it is powered by the Corrosion proxy.
 
 - Replit ✅
-- Cyclic 🚫
+- Cyclic ✅
 - Vercel 🚫
