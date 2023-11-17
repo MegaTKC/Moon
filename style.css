@@ -35,6 +35,17 @@ input[type=submit] {
     right: 0;
 }
 
+button[type=toggle] {
+    background-color: transparent;
+    width: 100px;
+    height: 40px;
+    color: white;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
 input[type=text] {
     width: 250px;
     height: 37.5px;

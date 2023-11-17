@@ -4,11 +4,13 @@ const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
+const Unblocker = require('unblocker');
 
 const app = express();
+
 const proxy = new Corrosion({
     codec: 'plain',
-    prefix: '/get/'
+    prefix: '/corr/'
 });
 
 proxy.bundleScripts();
@@ -34,6 +36,15 @@ app.get('/', (req, res) => {
     res.setHeader('Content-Type', 'text/html');
     res.end(fs.readFileSync(indexPath, 'utf-8'));
 });
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+const unblocker = Unblocker({
+    prefix: '/nub/',
+    hostBlacklist: [],
+});
+
+app.use(unblocker);
 
 const useSSL = false;
 
