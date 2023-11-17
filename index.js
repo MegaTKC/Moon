@@ -25,12 +25,6 @@ app.use((req, res, next) => {
     next();
 });
 
-app.get('/style.css', (req, res) => {
-    const cssPath = path.join(__dirname, '/style.css');
-    res.setHeader('Content-Type', 'text/css');
-    fs.createReadStream(cssPath).pipe(res);
-});
-
 app.get('/', (req, res) => {
     const indexPath = path.join(__dirname, '/index.html');
     res.setHeader('Content-Type', 'text/html');
