@@ -1,9 +1,9 @@
-const http = require('http');
+const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
 
-const server = http.createServer();
+const app = express();
 const proxy = new Corrosion({
     codec: 'xor',
     prefix: '/get/'
@@ -11,20 +11,32 @@ const proxy = new Corrosion({
 
 proxy.bundleScripts();
 
-server.on('request', (request, response) => {
-    const url = request.url;
+app.use((req, res, next) => {
+    const url = req.url;
 
     if (url.startsWith(proxy.prefix)) {
-        return proxy.request(request, response);
+        return proxy.request(req, res);
     }
 
-    if (url === '/style.css') {
-        const cssPath = path.join(__dirname, '/style.css');
-        response.writeHead(200, { 'Content-Type': 'text/css' });
-        return fs.createReadStream(cssPath).pipe(response);
-    }
+    next();
+});
 
+app.get('/style.css', (req, res) => {
+    const cssPath = path.join(__dirname, '/style.css');
+    res.setHeader('Content-Type', 'text/css');
+    fs.createReadStream(cssPath).pipe(res);
+});
+
+app.get('/', (req, res) => {
     const indexPath = path.join(__dirname, '/index.html');
-    response.writeHead(200, { 'Content-Type': 'text/html' }); // Set Content-Type to 'text/html'
-    response.end(fs.readFileSync(indexPath, 'utf-8'));
-}).on('upgrade', (clientRequest, clientSocket, clientHead) => proxy.upgrade(clientRequest, clientSocket, clientHead)).listen(3000);
+    res.setHeader('Content-Type', 'text/html');
+    res.end(fs.readFileSync(indexPath, 'utf-8'));
+});
+
+app.server = app.listen(3000, () => {
+    console.log('Server is listening on port 3000');
+});
+
+app.server.on('upgrade', (request, socket, head) => {
+    proxy.upgrade(request, socket, head);
+});
