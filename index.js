@@ -1,4 +1,5 @@
 const express = require('express');
+const https = require('https'); // Import the 'https' module
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
@@ -33,7 +34,12 @@ app.get('/', (req, res) => {
     res.end(fs.readFileSync(indexPath, 'utf-8'));
 });
 
-app.server = app.listen(3000, () => {
+const sslOptions = {
+    key: fs.readFileSync('ssl.key'),     // Path to your SSL private key
+    cert: fs.readFileSync('ssl.cert'),   // Path to your SSL certificate
+};
+
+app.server = https.createServer(sslOptions, app).listen(3000, () => {
     console.log('Server is listening on port 3000');
 });
 
