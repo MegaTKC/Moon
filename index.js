@@ -1,5 +1,6 @@
 const express = require('express');
-const https = require('https'); // Import the 'https' module
+const http = require('http');
+const https = require('https');
 const fs = require('fs');
 const path = require('path');
 const Corrosion = require('corrosion');
@@ -34,15 +35,25 @@ app.get('/', (req, res) => {
     res.end(fs.readFileSync(indexPath, 'utf-8'));
 });
 
-const sslOptions = {
-    key: fs.readFileSync('ssl.key'),     // Path to your SSL private key
-    cert: fs.readFileSync('ssl.cert'),   // Path to your SSL certificate
-};
+const useSSL = false;
 
-app.server = https.createServer(sslOptions, app).listen(3000, () => {
-    console.log('Server is listening on port 3000');
+let server;
+
+if (useSSL) {
+    const sslOptions = {
+        key: fs.readFileSync('ssl.key'),     // Path to your SSL private key
+        cert: fs.readFileSync('ssl.cert'),   // Path to your SSL certificate
+    };
+
+    server = https.createServer(sslOptions, app);
+} else {
+    server = http.createServer(app);
+}
+
+server.listen(3000, () => {
+    console.log(`Server is listening on port 3000${useSSL ? ' with SSL' : ''}`);
 });
 
-app.server.on('upgrade', (request, socket, head) => {
+server.on('upgrade', (request, socket, head) => {
     proxy.upgrade(request, socket, head);
 });
