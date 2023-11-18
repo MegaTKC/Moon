@@ -1,3 +1,5 @@
+# I don't recommend using this anymore because it's no longer supported. This is the `legacy` code. Versions 0.0.2-3-alpha and under. The proxies work better in the `main` branch.
+
 # Moon
 A simple frontend (for now) used to evade web filters.
 
