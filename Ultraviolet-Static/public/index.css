@@ -23,18 +23,6 @@ p {
   color: white;
 }
 
-input[type=submit] {
-  background-color: #FF3636;
-  width: 100px;
-  height: 40px;
-  color: white;
-  font-size: 20px;
-  border: none;
-  position: absolute;
-  top: 0;
-  right: 0;
-}
-
 input[type=text] {
   width: 250px;
   height: 37.5px;
