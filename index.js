@@ -6,6 +6,9 @@ const path = require('path');
 const Corrosion = require('corrosion');
 const Unblocker = require('unblocker');
 
+const useSSL = false;
+const port = 3000;
+
 const app = express();
 
 const proxy = new Corrosion({
@@ -40,8 +43,6 @@ const unblocker = Unblocker({
 
 app.use(unblocker);
 
-const useSSL = false;
-
 let server;
 
 if (useSSL) {
@@ -55,8 +56,8 @@ if (useSSL) {
     server = http.createServer(app);
 }
 
-server.listen(3000, () => {
-    console.log(`Server is listening on port 3000${useSSL ? ' with SSL' : ''}`);
+server.listen(port, () => {
+    console.log(`Server is listening on port ${port} ${useSSL ? ' with SSL' : ''}`);
 });
 
 server.on('upgrade', (request, socket, head) => {
