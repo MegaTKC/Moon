@@ -1,0 +1,55 @@
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #242830;
+  font-family: sans-serif;
+  margin: 0;
+}
+
+h1 {
+  text-align: center; 
+  color: white;
+}
+
+form {
+  position: relative;
+  margin: auto; /* Center the form horizontally */
+}
+
+p {
+  color: white;
+}
+
+input[type=submit] {
+  background-color: #FF3636;
+  width: 100px;
+  height: 40px;
+  color: white;
+  font-size: 20px;
+  border: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+input[type=text] {
+  width: 250px;
+  height: 37.5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-radius: 10px;
+  border: none; /* Remove the border */
+  outline: none; /* Remove the click highlight */
+  user-select: none; /* Prevent text selection */
+}
+
+#co-form {
+  display: none;
+}
+
+#selected-proxy-text {
+color: white;
+}
