@@ -38,8 +38,8 @@ input[type=submit] {
 input[type=text] {
   width: 250px;
   height: 37.5px;
-  padding-left: 5px;
-  padding-right: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   border-radius: 10px;
   border: none; /* Remove the border */
   outline: none; /* Remove the click highlight */
