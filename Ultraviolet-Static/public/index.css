@@ -53,3 +53,11 @@ input[type=text] {
 #selected-proxy-text {
 color: white;
 }
+
+button {
+  border: transparent;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+  width: 100px;
+}
