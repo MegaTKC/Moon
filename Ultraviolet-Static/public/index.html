@@ -73,20 +73,33 @@
       <button onclick="toggleForm('unblocker-form')">Unblocker</button>
   </div>
   <script>
-      function toggleForm(formId) {
-          // Hide all forms
-          document.getElementById('co-form').style.display = 'none';
-          document.getElementById('uv-form').style.display = 'none';
-          document.getElementById('unblocker-form').style.display = 'none';
-  
-          // Show the selected form
-          document.getElementById(formId).style.display = 'flex';
-  
-          // Update the selected proxy text
-          document.getElementById('selected-proxy-text').innerText =
-              formId === 'co-form' ? 'Selected Proxy: Corrosion' : formId === 'uv-form' ? 'Selected Proxy: Ultraviolet' : 'Selected Proxy: Unblocker';
-      }
-  </script>
+    function toggleForm(formId) {
+        // Hide all forms
+        document.getElementById('co-form').style.display = 'none';
+        document.getElementById('uv-form').style.display = 'none';
+        document.getElementById('unblocker-form').style.display = 'none';
+
+        // Show the selected form
+        document.getElementById(formId).style.display = 'flex';
+
+        // Update the selected proxy text
+        document.getElementById('selected-proxy-text').innerText =
+            formId === 'co-form' ? 'Selected Proxy: Corrosion' : formId === 'uv-form' ? 'Selected Proxy: Ultraviolet' : 'Selected Proxy: Unblocker';
+    }
+
+    document.getElementById('uv-form').addEventListener('submit', function (event) {
+        const query = document.getElementById('uv-address').value;
+        window.location.href = 'https://www.google.com/search?q=' + encodeURIComponent(query);
+        event.preventDefault();
+    });
+
+    document.getElementById('unblocker-form').addEventListener('submit', function (event) {
+        const query = document.getElementById('unblocker-address').value;
+        window.location.href = '/ub/https://www.google.com/search?q=' + encodeURIComponent(query);
+        event.preventDefault();
+    });
+    </script>
+
     <div class="desc left-margin">
         <p id="uv-error"></p>
         <pre id="uv-error-code"></pre>
