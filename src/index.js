@@ -1,3 +1,5 @@
+// index.js
+
 import express from "express";
 import { createServer } from "node:http";
 import { publicPath } from "ultraviolet-static";
@@ -6,13 +8,14 @@ import { join } from "node:path";
 import { hostname } from "node:os";
 import Corrosion from "corrosion";
 import { createBareServer } from "@tomphttp/bare-server-node";
+import Unblocker from "unblocker";
 
 const bare = createBareServer("/bare/");
 const app = express();
 
 const corrosion = new Corrosion({
-  codec: 'xor',
-  prefix: '/co/',
+  codec: "xor",
+  prefix: "/co/",
 });
 
 // Load our publicPath first and prioritize it over UV.
@@ -22,10 +25,22 @@ app.use(express.static(publicPath));
 app.use("/uv/", express.static(uvPath));
 
 // Error for everything else
-app.use((req, res) => {
+app.use((req, res, next) => {
+  if (req.url.startsWith("/ub/")) {
+    // If the URL starts with "/ub/", let unblocker handle it
+    return next();
+  }
+
   res.status(404);
   res.sendFile(join(publicPath, "404.html"));
 });
+
+// Initialize Unblocker with the prefix '/ub/'
+const unblocker = Unblocker({
+  prefix: "/ub/",
+});
+
+app.use(unblocker);
 
 const server = createServer();
 

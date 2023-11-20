@@ -38,6 +38,10 @@ input[type=text] {
   display: none;
 }
 
+#unblocker-form {
+  display: none;
+}
+
 #selected-proxy-text {
 color: white;
 }

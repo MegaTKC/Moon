@@ -1,11 +1,9 @@
 <!DOCTYPE html>
-<html>
-  <head>
+<html lang="en">
+
+<head>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, shrink-to-fit=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
     <title>Moon.</title>
     <meta name="googlebot" content="index, follow, snippet" />
     <link rel="stylesheet" href="index.css" />
@@ -15,76 +13,84 @@
     <script src="search.js" defer></script>
     <script src="index.js" defer></script>
     <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "What is Ultraviolet (Web Proxy)?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers and more!"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do I unblock sites using Ultraviolet?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Simply head to an official site featuring Ultraviolet such as Holy Unblocker or Incognito! You can also self-host Ultraviolet on your own web server for maximum privacy."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What if Ultraviolet is blocked or not working?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Join the Titanium Network Discord at discord.gg/unblock!"
-            }
-          }
-        ]
-      }
+        {
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            "mainEntity": [
+                {
+                    "@type": "Question",
+                    "name": "What is Ultraviolet (Web Proxy)?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Highly sophisticated proxy used for evading internet censorship or accessing websites in a controlled sandbox using the power of service-workers and more!"
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "How do I unblock sites using Ultraviolet?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Simply head to an official site featuring Ultraviolet such as Holy Unblocker or Incognito! You can also self-host Ultraviolet on your own web server for maximum privacy."
+                    }
+                },
+                {
+                    "@type": "Question",
+                    "name": "What if Ultraviolet is blocked or not working?",
+                    "acceptedAnswer": {
+                        "@type": "Answer",
+                        "text": "Join the Titanium Network Discord at discord.gg/unblock!"
+                    }
+                }
+            ]
+        }
     </script>
-  </head>
+</head>
 
-  <body>
-    <div
-      class="title">
-      <h1>Moon.</h1>
+<body>
+    <div class="title">
+        <h1>Moon.</h1>
     </div>
+
     <!-- Corrosion Search Form -->
     <form id="co-form" action="/co/gateway/" method="POST" class="flex-center">
-      <input id="uv-address" type="text" name="url" placeholder="Search the web">
-  </form>
+        <input id="uv-address" type="text" name="url" placeholder="Search the web">
+    </form>
 
-  <!-- Ultraviolet Search Form -->
-  <form id="uv-form" class="flex-center">
-      <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
-      <input id="uv-address" type="text" placeholder="Search the web"/>
+    <!-- Ultraviolet Search Form -->
+    <form id="uv-form" class="flex-center">
+        <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
+        <input id="uv-address" type="text" placeholder="Search the web" />
+    </form>
+
+    <form id="unblocker-form" action="/ub/https://google.com/search?q=%s/" class="flex-center">
+      <input id="unblocker-address" type="text" placeholder="Search the web" />
   </form>
+  
   <p id="selected-proxy-text" class="flex-center">Selected Proxy: Ultraviolet</p>
   <div class="flex-center">
-    <button onclick="toggleForm('co-form')">Corrosion</button>
-    <button onclick="toggleForm('uv-form')">Ultraviolet</button>
-</div>
+      <button onclick="toggleForm('co-form')">Corrosion</button>
+      <button onclick="toggleForm('uv-form')">Ultraviolet</button>
+      <button onclick="toggleForm('unblocker-form')">Unblocker</button>
+  </div>
   <script>
-    function toggleForm(formId) {
-        // Hide all forms
-        document.getElementById('co-form').style.display = 'none';
-        document.getElementById('uv-form').style.display = 'none';
-
-        // Show the selected form
-        document.getElementById(formId).style.display = 'flex';
-
-        // Update the selected proxy text
-        document.getElementById('selected-proxy-text').innerText =
-            formId === 'co-form' ? 'Selected Proxy: Corrosion' : 'Selected Proxy: Ultraviolet';
-    }
-</script>
+      function toggleForm(formId) {
+          // Hide all forms
+          document.getElementById('co-form').style.display = 'none';
+          document.getElementById('uv-form').style.display = 'none';
+          document.getElementById('unblocker-form').style.display = 'none';
+  
+          // Show the selected form
+          document.getElementById(formId).style.display = 'flex';
+  
+          // Update the selected proxy text
+          document.getElementById('selected-proxy-text').innerText =
+              formId === 'co-form' ? 'Selected Proxy: Corrosion' : formId === 'uv-form' ? 'Selected Proxy: Ultraviolet' : 'Selected Proxy: Unblocker';
+      }
+  </script>
     <div class="desc left-margin">
-      <p id="uv-error"></p>
-      <pre id="uv-error-code"></pre>
+        <p id="uv-error"></p>
+        <pre id="uv-error-code"></pre>
     </div>
-  </body>
+</body>
+
 </html>
