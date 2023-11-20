@@ -10,7 +10,11 @@ Ultraviolet is a highly advanced proxy using service workers and TompHTTP. Creat
 ### Corrosion
 Corrosion is a proxy designed by TitaniumNetwork which was succeeded by Ultraviolet and the successor to the Alloy proxy. Corrosion supports a large majority of websites, including YouTube (and YouTube Music), Soundcloud, and Coolmath Games!
 
+### Unblocker
+Unblocker is a proxy created by nfriedly. It doesn't have support for highly advanced websites (YouTube, Instagram, Discord) but is speedy for ones like Wikipedia, or more basic websites.
+
 ## Libaries & Credits
 Credits to `expressjs` for serving my static files. (HTML/CSS/JS)<br>
 - `TitaniumNetwork` for creating Corrosion and Ultraviolet. (I basically just modified Ultraviolet-App, added Corrosion, add some stuffs and remove stuff I didn't want.)
 - `@tomphttp/bare-server-node` Creating an interesting future for proxies because they have service workers.
+- `nfriedly` for creating the Unblocker proxy.
