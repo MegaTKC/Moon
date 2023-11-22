@@ -1,0 +1,20 @@
+[
+    {
+        "name": "osu! web",
+        "displayName": "osu! web",
+        "image": "games/img/osu.jpg",
+        "url": "/games/osu"
+    },
+    {
+        "name": "Slope",
+        "displayName": "Slope",
+        "image": "games/img/slope.jpeg",
+        "url": "/games/slope"
+    },
+    {
+        "name": "Vex 3",
+        "displayName": "Vex 3",
+        "image": "games/img/vex3.jpeg",
+        "url": "/games/vex3"
+    }
+]

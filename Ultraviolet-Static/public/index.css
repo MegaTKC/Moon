@@ -4,7 +4,6 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  /*! background-color: #000; */
   font-family: sans-serif;
   margin: 0;
   background: url('https://images.unsplash.com/photo-1514897575457-c4db467cf78e?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -12,7 +11,11 @@ body {
 }
 
 h1 {
-  text-align: center; 
+  text-align: center;
+  color: white;
+}
+
+h2 {
   color: white;
 }
 
@@ -24,16 +27,15 @@ p {
   color: white;
 }
 
-
 input[type=text] {
   width: 250px;
   height: 37.5px;
   padding-left: 10px;
   padding-right: 10px;
   border-radius: 10px;
-  border: none; /* Remove the border */
-  outline: none; /* Remove the click highlight */
-  user-select: none; /* Prevent text selection */
+  border: none;
+  outline: none;
+  user-select: none;
 }
 
 #co-form {
@@ -45,7 +47,7 @@ input[type=text] {
 }
 
 #selected-proxy-text {
-color: white;
+  color: white;
 }
 
 button {
@@ -54,4 +56,22 @@ button {
   color: white;
   cursor: pointer;
   width: 100px;
+}
+
+.games-button {
+  position: fixed;
+  bottom: 20px;
+  color: white;
+  cursor: pointer;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.game-icon {
+  max-width: 128px;
+  max-height: 128px;
+  cursor: pointer;
+  margin: 5px;
 }

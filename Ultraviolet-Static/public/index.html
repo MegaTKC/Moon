@@ -12,6 +12,7 @@
     <script src="register-sw.js" defer></script>
     <script src="search.js" defer></script>
     <script src="index.js" defer></script>
+    <script src="gameshandler.js" defer></script>
     <script type="application/ld+json">
         {
             "@context": "https://schema.org",
@@ -41,7 +42,7 @@
                         "text": "Join the Titanium Network Discord at discord.gg/unblock!"
                     }
                 }
-            ]
+            }
         }
     </script>
 </head>
@@ -51,47 +52,55 @@
         <h1>Moon.</h1>
     </div>
 
-    <!-- Corrosion Search Form -->
     <form id="co-form" action="/co/gateway/" method="POST" class="flex-center">
         <input id="uv-address" type="text" name="url" placeholder="Search the web">
     </form>
 
-    <!-- Ultraviolet Search Form -->
     <form id="uv-form" class="flex-center">
         <input id="uv-search-engine" value="https://www.google.com/search?q=%s" type="hidden" />
         <input id="uv-address" type="text" placeholder="Search the web" />
     </form>
 
     <form id="unblocker-form" action="/ub/https://google.com/search?q=%s/" class="flex-center">
-      <input id="unblocker-address" type="text" placeholder="Search the web" />
-  </form>
-  
-  <p id="selected-proxy-text" class="flex-center">Selected Proxy: Ultraviolet</p>
-  <div class="flex-center">
-      <button onclick="toggleForm('co-form')">Corrosion</button>
-      <button onclick="toggleForm('uv-form')">Ultraviolet</button>
-      <button onclick="toggleForm('unblocker-form')">Unblocker</button>
-  </div>
-  <script>
-    function toggleForm(formId) {
-        // Hide all forms
-        document.getElementById('co-form').style.display = 'none';
-        document.getElementById('uv-form').style.display = 'none';
-        document.getElementById('unblocker-form').style.display = 'none';
+        <input id="unblocker-address" type="text" placeholder="Search the web" />
+    </form>
 
-        // Show the selected form
-        document.getElementById(formId).style.display = 'flex';
+    <p id="selected-proxy-text" class="flex-center">Selected Proxy: Ultraviolet</p>
+    <div class="flex-center">
+        <button onclick="toggleForm('co-form')">Corrosion</button>
+        <button onclick="toggleForm('uv-form')">Ultraviolet</button>
+        <button onclick="toggleForm('unblocker-form')">Unblocker</button>
+    </div>
 
-        // Update the selected proxy text
-        document.getElementById('selected-proxy-text').innerText =
-            formId === 'co-form' ? 'Selected Proxy: Corrosion' : formId === 'uv-form' ? 'Selected Proxy: Ultraviolet' : 'Selected Proxy: Unblocker';
-    }
+    <div id="games-sidebar" style="display: none;">
+        <!-- Dynamic stuff, dont touch -->
+    </div>
 
-    document.getElementById('unblocker-form').addEventListener('submit', function (event) {
-        const query = document.getElementById('unblocker-address').value;
-        window.location.href = '/ub/https://www.google.com/search?q=' + encodeURIComponent(query);
-        event.preventDefault();
-    });
+    <button class="games-button" onclick="openGames()">Games</button>
+
+    <script>
+        var windowObjectReference = null; // global variable
+        var gamesSidebar = document.getElementById('games-sidebar');
+    
+        function toggleForm(formId) {
+            // Hide all forms
+            document.getElementById('co-form').style.display = 'none';
+            document.getElementById('uv-form').style.display = 'none';
+            document.getElementById('unblocker-form').style.display = 'none';
+    
+            document.getElementById(formId).style.display = 'flex';
+    
+            gamesSidebar.style.display = 'none';
+    
+            document.getElementById('selected-proxy-text').innerText =
+                formId === 'co-form' ? 'Selected Proxy: Corrosion' : formId === 'uv-form' ? 'Selected Proxy: Ultraviolet' : 'Selected Proxy: Unblocker';
+        }
+    
+        document.getElementById('unblocker-form').addEventListener('submit', function (event) {
+            const query = document.getElementById('unblocker-address').value;
+            window.location.href = '/ub/https://www.google.com/search?q=' + encodeURIComponent(query);
+            event.preventDefault();
+        });
     </script>
 
     <div class="desc left-margin">

@@ -13,6 +13,9 @@ Corrosion is a proxy designed by TitaniumNetwork which was succeeded by Ultravio
 ### Unblocker
 Unblocker is a proxy created by nfriedly. It doesn't have support for highly advanced websites (YouTube, Instagram, Discord) but is speedy for ones like Wikipedia, or more basic websites.
 
+## Adding Games
+Clone `https://github.com/MegaTKC/games` into `/Ultraviolet-Static/public/` and you should be able to play.
+
 ## Libaries & Credits
 - Credits to `expressjs` for serving my static files. (HTML/CSS/JS)<br>
 - `TitaniumNetwork` for creating Corrosion and Ultraviolet. (I basically just modified Ultraviolet-App, added Corrosion, add some stuffs and remove stuff I didn't want.)
